@@ -1,23 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import Haiku from './views/Haiku';
+import Main from './views/Main';
+import ShakesSonnet from './views/ShakesSonnet';
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
 
 function App() {
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+      <Switch>
+        <Route exact path= "/">
+          <Main />
+        </Route>
+        <Route exact path= "/haiku">
+        <Haiku />
+        </Route>
+        <Route exact path= "/shakespeareanSonnet">
+        <ShakesSonnet />
+        </Route>
+      </Switch>
+      </BrowserRouter>
+
+    
     </div>
   );
 }
