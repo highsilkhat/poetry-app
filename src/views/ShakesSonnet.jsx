@@ -40,17 +40,18 @@ const ShakesSonnet = (props) => {
         
     })
 
-    const [rhymeList, setRhymeList] = useState ([])
+    // const [rhymeList, setRhymeList] = useState ([])
 
     useEffect (() => {
-        axios.get("https://rhymebrain.com/talk?function=getRhymes&word=hello")
+        axios.get(`https://rhymebrain.com/talk?function=getRhymes&word=${lastWord.firstLine}`)
         .then(res => {
-            setRhymeList(res.data);
+            setLastWord.FirstLine(res.data);
+            console.log(res)
             
         })
         .catch(err => console.log(err));
 
-    }, [])
+    }, [lastWord.firstLine])
 
     const onChangeHandler = (event) => {
         setShakesSonnet({
@@ -78,7 +79,8 @@ const ShakesSonnet = (props) => {
     }
 
     const ryhmeCheck = (arr, rhymedWord) => {
-
+        console.log(arr)
+        console.log(rhymedWord)
         for (let i = 0; i < arr.length; i++) {
             if (arr[i].word === rhymedWord) {
                 console.log(arr[i].word)
@@ -95,14 +97,14 @@ const ShakesSonnet = (props) => {
 
             <h2>Shakespearean Sonnet</h2>
 
-            {ryhmeCheck(rhymeList, "know")}
+            {/* {ryhmeCheck(rhymeList, "know")} */}
             {findLastWord("This is a string")}
 
             <form>
                 <label>First Line</label>
                 <input type="text" name="firstLine" onChange={onChangeHandler} /><br />
                 <span>{shakesSonnetCheck(shakesSonnet.firstLine) && shakesSonnet.firstLine.length !== 0 && "Lines in sonnets have 10 syllables each."}</span><br />
-                <span>{ryhmeCheck(rhymeList, lastWord.thirdLine) && "Lines do not rhyme"}</span><br/>
+                <span>{ryhmeCheck(lastWord.firstLine, lastWord.thirdLine) && "Lines do not rhyme"}</span><br/>
 
                 <label>Second Line</label>
                 <input type="text" name="secondLine" onChange={onChangeHandler} /><br />

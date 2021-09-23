@@ -1,6 +1,7 @@
 import './App.css';
 import Haiku from './views/Haiku';
 import Main from './views/Main';
+import Poetry from './views/Poetry';
 import ShakesSonnet from './views/ShakesSonnet';
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 
@@ -11,7 +12,7 @@ function App() {
       <BrowserRouter>
       <Switch>
         <Route exact path= "/">
-          <Main />
+          <Poetry />
         </Route>
         <Route exact path= "/haiku">
         <Haiku />
